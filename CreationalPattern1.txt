@@ -1,0 +1,93 @@
+
+import laptop.Application;
+import laptop.ProgrammingLanguages;
+import laptop.System;
+import laptop.Software;
+import laptop.SoftwareFactory;
+import java.util.Scanner;
+
+
+
+public class FactoryMain {
+
+	public static void main(String args[])
+	{
+		
+		SoftwareFactory sf=new SoftwareFactory();
+		Software obj =sf.getInstance("Learn Java");
+		obj.spec();
+		
+	}
+
+}
+package laptop;
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
+public class Application implements Software{
+
+	@Override
+	public void spec() {
+		PrintStream myOutput=new PrintStream(new FileOutputStream(FileDescriptor.out));
+		myOutput.print("Learn to use ");
+		
+	}
+	
+
+}
+package laptop;
+
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
+
+public class ProgrammingLanguages implements Software {
+
+	@Override
+	public void spec() {
+		PrintStream myOutput=new PrintStream(new FileOutputStream(FileDescriptor.out));
+		myOutput.print("Learn java");
+		
+	}
+
+}
+package laptop;
+
+public interface Software {
+
+	void spec();
+}
+package laptop;
+
+
+public class SoftwareFactory {
+
+	public Software getInstance(String s)
+	{
+		if(s.equals("Learn Java"))
+			return new System();
+		else if(s.equals("Learn to use"))
+			return new Application();
+		else
+			return new ProgrammingLanguages();
+	}
+}
+package laptop;
+
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
+public class System implements Software {
+
+	@Override
+	public void spec() {
+		PrintStream myOutput=new PrintStream(new FileOutputStream(FileDescriptor.out));
+		myOutput.print("Most important");
+	}
+	
+	
+
+}

@@ -1,0 +1,86 @@
+package Prototype;
+
+public class PrototypeMain {
+
+	public static void main(String [] args) throws CloneNotSupportedException
+	{
+		ColourBox cb=new ColourBox();
+		cb.setBoxName("Rainbow");
+		cb.loadData();
+		
+		ColourBox cb1=(ColourBox)cb.clone();
+		cb.getColours().remove(2);
+		cb1.setBoxName("Markers");
+		
+		System.out.println(cb);
+		System.out.println(cb1);
+	}
+}
+package Prototype;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ColourBox implements Cloneable{
+
+	
+	private String boxName;
+	List<Colour>colours=new ArrayList<>();
+	public String getBoxName()
+	{
+		return boxName;
+	}
+	public List<Colour> getColours() {
+		return colours;
+	}
+	public void setColours(List<Colour> colours) {
+		this.colours = colours;
+	}
+	public void setBoxName(String boxName) {
+		this.boxName = boxName;
+	}
+	public void loadData()
+	{
+		for(int i=1;i<=7;i++)
+		{
+			Colour c=new Colour();
+			c.setCid(i);
+			c.setCname("Colour"+i);
+			getColours().add(c);
+		}
+	}
+	@Override
+	public String toString() {
+		return "ColourBox [boxName=" + boxName + ", colours=" + colours + "]";
+	}
+	@Override
+	protected ColourBox clone() throws CloneNotSupportedException {
+		
+		ColourBox Box =new ColourBox();
+		for(Colour c: this.getColours())
+		{
+			Box.getColours().add(c);
+		}
+		return Box;
+	}
+	
+	
+}
+package Prototype;
+
+public class PrototypeMain {
+
+	public static void main(String [] args) throws CloneNotSupportedException
+	{
+		ColourBox cb=new ColourBox();
+		cb.setBoxName("Rainbow");
+		cb.loadData();
+		
+		ColourBox cb1=(ColourBox)cb.clone();
+		cb.getColours().remove(2);
+		cb1.setBoxName("Markers");
+		
+		System.out.println(cb);
+		System.out.println(cb1);
+	}
+}

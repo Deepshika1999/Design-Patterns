@@ -1,0 +1,64 @@
+package StructuralPattern;
+
+
+public class Assignment {
+
+private pen p;
+	
+	public pen getP()
+	{
+		return p;
+	}
+
+	public void setP(pen p) 
+	{
+		this.p = p;
+	}
+
+	public void writeAssignment(String str)
+	{
+		p.write(str);
+	}
+}
+package StructuralPattern;
+
+public class book {
+
+	public void mark(String str)
+	{
+		System.out.println(str);
+	}
+
+}
+package StructuralPattern;
+
+
+public class Homework {
+
+	public static void main(String [] args)
+	{
+		 pen p=new PenAdapter();
+		Assignment w=new Assignment();
+		w.setP(p);
+		w.writeAssignment("done assignment1");
+	}
+}
+package StructuralPattern;
+
+public interface pen {
+	
+	void write(String str);
+
+}
+package StructuralPattern;
+
+public class PenAdapter implements pen
+{
+	book pp=new  book();
+
+	public void write(String str) 
+	{
+		
+		pp.mark(str);
+	}
+}

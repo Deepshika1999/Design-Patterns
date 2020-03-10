@@ -1,0 +1,61 @@
+package BehavourialPattern;
+
+public class Pattern2 {
+
+	public static void main(String[] args)  
+    { 
+        Alert A = new Alert(); 
+        A.alert(); 
+        A.alert(); 
+        A.set(new Silent()); 
+        A.alert(); 
+        A.alert(); 
+    } 
+}
+
+package BehavourialPattern;
+
+public interface MobileAlert {
+
+	public void alert(Alert a);
+}
+package BehavourialPattern;
+
+public class Silent implements MobileAlert{
+
+	public void alert(Alert a)  
+    { 
+        System.out.println("silent"); 
+    } 
+  
+}
+package BehavourialPattern;
+
+public class Vibration implements MobileAlert{
+
+	public void alert(Alert a)  
+    { 
+         System.out.println("vibration"); 
+    } 
+}
+package BehavourialPattern;
+
+public class Alert {
+
+	private MobileAlert currentState; 
+	  
+    public Alert()  
+    { 
+        currentState = new Vibration(); 
+    } 
+  
+    public void set(MobileAlert ma)  
+    { 
+        currentState = ma; 
+    } 
+  
+    public void alert()  
+    { 
+        currentState.alert(this); 
+    } 
+}
